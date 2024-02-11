@@ -1,4 +1,4 @@
-## Interface: 100200
-## Title: Track This
+## Interface: 100205
+## Title: FastTrack
 ## Notes: Simple WoW addOn for quickly tracking achievements
-TrackThis.lua
+FastTrack.xml

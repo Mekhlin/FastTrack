@@ -1,6 +1,6 @@
-function ShowTrackThisDialog()
+function ShowFastTrackDialog()
     -- Create a unique name for the dialog
-    local dialogName = "TrackThisInputDialog"
+    local dialogName = "FastTrackInputDialog"
 
     -- Check if the dialog already exists
     if not StaticPopupDialogs[dialogName] then
@@ -18,7 +18,7 @@ function ShowTrackThisDialog()
                 else
                     -- Display an error message
                     print("Invalid input. Please enter a valid integer")
-                    ShowTrackThisDialog()
+                    ShowFastTrackDialog()
                 end
             end,
             hasEditBox = true,
@@ -35,14 +35,23 @@ function ShowTrackThisDialog()
     StaticPopup_Show(dialogName)
 end
 
--- Slash command handler
-SLASH_TRACK1 = "/track"
-SlashCmdList["TRACK"] = function(msg)
+local function Handle_SlashCmd(msg)
     local inputNumber = tonumber(msg)
     
     if inputNumber then
         C_ContentTracking.StartTracking(2, inputNumber)
     else
-        ShowTrackThisDialog()
+        ShowFastTrackDialog()
     end
+end
+
+-- Slash command handlers
+SLASH_TRACK1 = "/track"
+SlashCmdList["TRACK"] = function(msg)
+    Handle_SlashCmd(msg)
+end
+
+SLASH_FT1 = "/ft"
+SlashCmdList["FT"] = function(msg)
+    Handle_SlashCmd(msg)
 end
